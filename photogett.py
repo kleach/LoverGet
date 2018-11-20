@@ -9,14 +9,14 @@ CONFIG_PATH = 'settings/config.json'
 
 
 def main():
-    arg_parser = ArgumentParser(prog='LoverGet',
-                                description='A program for getting your lover\'s photos from social networks',
-                                epilog='© 2015, Dmitry Petrushin')
+    arg_parser = ArgumentParser(prog='PhotoGet',
+                                description='A program for getting someone\'s photos from social networks',
+                                epilog='© 2015, Dmitry Starov')
 
-    arg_parser.add_argument('-j', '--loverPath',
+    arg_parser.add_argument('-j', '--jsonPath',
                             help='A path to the JSON file with your lover\'s info',
                             required=True,
-                            dest='lover_path')
+                            dest='json_path')
     arg_parser.add_argument('-s', '--savePath',
                             help='A path where all downloaded photos will be stored',
                             required=True,
@@ -34,13 +34,13 @@ def main():
 
     with open(CONFIG_PATH, 'r') as config_file:
         config: Dict[str, int] = json_load(config_file)
-    with open(args.lover_path, 'r') as lover_path:
-        lovers: List[Dict[str, Union[str, List[str]]]] = json_load(lover_path)['lovers']
+    with open(args.json_path, 'r') as json_path:
+        people: List[Dict[str, Union[str, List[str]]]] = json_load(json_path)['people']
 
     vk_links = VK(app_id=config['vk_app_id'],
                   scope=config['vk_scope'],
                   login=args.vk_login,
-                  password=args.vk_password).get_links(lovers=lovers)
+                  password=args.vk_password).get_links(people=people)
 
     not_downloaded = Downloader().download(links=vk_links, save_path=args.save_path)
     if len(not_downloaded) > 0:
