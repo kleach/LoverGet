@@ -1,22 +1,22 @@
 {
-  "lovers": [
+  "people": [
     {
-      "first_name": "Пашенька",
-      "last_name": "Наш Дуров",
+      "first_name": "Pavel",
+      "last_name": "Durov",
       "vk": [
         "1"
       ]
     },
     {
-      "first_name": "Алеша",
-      "last_name": "Наш Навальный",
+      "first_name": "Alexey",
+      "last_name": "Navalny",
       "vk": [
         "129244038"
       ]
     },
 	{
-      "first_name": "Виталик",
-      "last_name": "Наш Милонов",
+      "first_name": "Vitaly",
+      "last_name": "Milonov",
       "vk": [
         "3011920"
       ]
