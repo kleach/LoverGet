@@ -52,10 +52,10 @@ class VK:
 
     def get_links(
             self,
-            lovers: List[Dict[str, Union[str, List[str]]]]) -> List[Link]:
+            people: List[Dict[str, Union[str, List[str]]]]) -> List[Link]:
         """
-        Gathers all possible links from every lover
-        :param lovers: List of all lovers with the info about them
+        Gathers all possible links from every person
+        :param people: List of all people with the info about them
         :return: List of Links
         """
 
@@ -63,18 +63,18 @@ class VK:
 
         links: List[Link] = list()
 
-        for lover in lovers:
+        for person in people:
             count: int = 0
-            name: str = lover["last_name"] + ' ' + lover["first_name"]
+            name: str = person["last_name"] + ' ' + person["first_name"]
 
-            for account_id in lover['vk']:
+            for account_id in person['vk']:
                 result: List[Link] = self.get_links_from_id(int(account_id), name)
                 links.extend(result)
                 count += len(result)
 
             log('\t{0}: {1}'.format(name, count), INFO)
 
-        log('All links gathered', INFO)
+        log('All links has been gathered', INFO)
 
         return links
 
